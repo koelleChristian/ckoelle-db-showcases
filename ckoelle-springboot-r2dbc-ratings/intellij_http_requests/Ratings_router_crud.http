@@ -1,0 +1,16 @@
+#######################################################################################
+##################################  Atomic Functions ##################################
+###
+
+GET {{host}}/publication
+
+####
+
+POST {{host}}/publication
+Content-Type: application/json
+
+{
+  "domain": "LOGISTICS",
+  "year": 2022,
+  "businessVersion": "v1"
+}

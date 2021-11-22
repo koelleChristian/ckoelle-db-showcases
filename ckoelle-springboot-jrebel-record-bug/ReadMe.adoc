@@ -1,0 +1,17 @@
+== ckoelle-springboot-jrebel-record-bug
+The sole purpose of this project is to demontrate a jrebel bug when used with 
+
+* Spring Data,
+* Java 16, and 
+* Java _Records_ (instead of _Classes_) as choice to declare Spring Data managed datastructures/entities.
+
+* Just run `de.koelle.christian.spring.r2dbc.bug1.MyRecordIntTest`.
+** it'll be all green without jrebel but
+** you get the following error when ran with JRebel 2021.4.1:
++
+[source,shell]
+--
+java.lang.AssertionError: expectation "expectNextCount(1)" failed (expected: count = 1; actual: counted = 0; signal: onError(java.lang.UnsupportedOperationException: Cannot set immutable property de.koelle.christian.spring.r2dbc.bug1.MyRecord.id!))
+--
+
+The issue documented here has been submitted to JRebel.

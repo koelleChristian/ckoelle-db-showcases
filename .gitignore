@@ -1,0 +1,9 @@
+/.idea/
+.idea
+*.iml
+/*/target/
+application.properties
+/ckoelle-springboot-webflux-mongo-mail/
+/ckoelle-springboot-r2dbc-ratings-jooq/
+/ckoelle-springboot-simple-jpa/
+/ckoelle-springboot-simple-web/

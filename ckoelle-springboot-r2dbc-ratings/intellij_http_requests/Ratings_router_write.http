@@ -1,0 +1,111 @@
+###
+POST {{host}}/result/full
+Content-Type: application/json
+
+{
+  "publication": {
+    "domain": "LOGISTICS",
+    "year": 35,
+    "businessVersion": "v01"
+  },
+  "metricWithResults": [
+    {
+      "metric": {
+        "metricNumber": "3001",
+        "calculationType": "C1"
+      },
+      "results": [
+        {
+          "resultReference": "ba00001",
+          "resultValue": 14.42,
+          "trend": "UPWARDS"
+        },
+        {
+          "resultReference": "ba00002",
+          "resultValue": 15.53,
+          "trend": "DOWNWARDS"
+        },
+        {
+          "resultReference": "ba00003",
+          "resultValue": 16.64,
+          "trend": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "metric": {
+        "metricNumber": "3002",
+        "calculationType": "C2"
+      },
+      "results": [
+        {
+          "resultReference": "ba00001",
+          "resultValue": 21.21,
+          "trend": "UPWARDS"
+        },
+        {
+          "resultReference": "ba00003",
+          "resultValue": 23.23,
+          "trend": "UNCHANGED"
+        }
+      ]
+    }
+  ]
+}
+
+###
+
+###
+POST {{host}}/result/full
+Content-Type: application/json
+
+{
+  "publication": {
+    "domain": "MEDIA",
+    "year": 2020,
+    "businessVersion": "0.0.1-SNAPSHOT"
+  },
+  "metricWithResults": [
+    {
+      "metric": {
+        "metricNumber": "sales01",
+        "calculationType": "C1"
+      },
+      "results": [
+        {
+          "resultReference": "UK",
+          "resultValue": 102500.55,
+          "trend": "UPWARDS"
+        },
+        {
+          "resultReference": "USA",
+          "resultValue": 203600.66,
+          "trend": "DOWNWARDS"
+        },
+        {
+          "resultReference": "GERMANY",
+          "resultValue": 10000.00,
+          "trend": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "metric": {
+        "metricNumber": "sales02",
+        "calculationType": "C3"
+      },
+      "results": [
+        {
+          "resultReference": "GERMANY",
+          "resultValue": 54.54,
+          "trend": "UPWARDS"
+        },
+        {
+          "resultReference": "USA",
+          "resultValue": 65.65,
+          "trend": "UNCHANGED"
+        }
+      ]
+    }
+  ]
+}

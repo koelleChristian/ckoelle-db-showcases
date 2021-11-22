@@ -1,0 +1,56 @@
+#######################################################################################
+##################################  Atomic Functions ##################################
+###
+
+GET {{host}}/publication
+
+###
+
+GET {{host}}/result
+
+###
+
+GET {{host}}/metric
+
+####
+
+#######################################################################################
+################################  Aggregator Functions ################################
+
+###
+POST {{host}}/result/full/flat/tuplequery
+Content-Type: application/json
+
+{
+  "domain": "MEDIA",
+  "year": 2020,
+  "businessVersion": "0.0.1-SNAPSHOT"
+}
+###
+POST {{host}}/result/full/flat/stream
+Content-Type: application/json
+
+{
+  "domain": "MEDIA",
+  "year": 2020,
+  "businessVersion": "0.0.1-SNAPSHOT"
+}
+###
+POST {{host}}/result/full/flat/stream
+Content-Type: application/json
+
+{
+  "domain": "LOGISTICS",
+  "year": 35,
+  "businessVersion": "v01"
+}
+###
+POST {{host}}/result/full/hierarchical
+Content-Type: application/json
+
+{
+  "domain": "MEDIA",
+  "year": 2020,
+  "businessVersion": "0.0.1-SNAPSHOT"
+}
+###
