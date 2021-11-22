@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-public class StepVerifierPlaygroundTest {
+class StepVerifierPlaygroundTest {
 
 	@Test
 	void verifyException() {
@@ -22,7 +22,7 @@ public class StepVerifierPlaygroundTest {
 	}
 
 	@Test
-	public void verifyZipResult() {
+	void verifyZipResult() {
 
 		Flux<Integer> evenNumbers = Flux
 			.range(1, 6)

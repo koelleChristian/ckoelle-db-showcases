@@ -5,7 +5,9 @@ import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 
-public class FlowControlPlaygroundTest {
+@SuppressWarnings("java:S2699") // S2699 At least one Assertion required.
+class FlowControlPlaygroundTest {
+
 	@Test
 	void requestingLess() {
 		Flux.range(1, 10)

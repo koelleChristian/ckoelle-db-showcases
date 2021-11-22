@@ -1,7 +1,6 @@
 package de.koelle.christian.spring.r2dbc.ratings.mapping;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,10 +56,6 @@ public class OutsideInsideMapper {
 		return new RatingResult(null, fkPublicationId, fkMetricId, i.resultReference(), i.resultValue(), i.trend());
 	}
 
-	public RatingPublication map2Inner(final PublicationRO i) {
-		return new RatingPublication(null, i.domain(), i.year(), i.businessVersion(), LocalDateTime.now());
-	}
-
 	public Map<CreatePublicationRO, Map<CreateMetricRO, List<CreateResultRO>>> map2ReferenceMap(final CreatePublicationWithMetricResultsRO i) {
 		Map<CreatePublicationRO, Map<CreateMetricRO, List<CreateResultRO>>> result = new HashMap<>();
 		result.putIfAbsent(i.publication(), new HashMap<>());
@@ -70,11 +65,5 @@ public class OutsideInsideMapper {
 				j -> j.results()
 			)));
 		return result;
-	}
-
-	public Collection<RatingMetric> map2InnerCollection(final Collection<CreateMetricRO> input, final Integer fkPublicationId) {
-		return input.stream()
-			.map(i -> map2Inner(i, fkPublicationId))
-			.collect(Collectors.toList());
 	}
 }

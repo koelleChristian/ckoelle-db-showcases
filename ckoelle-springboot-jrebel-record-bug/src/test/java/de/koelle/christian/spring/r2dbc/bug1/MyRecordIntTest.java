@@ -19,7 +19,7 @@ class MyRecordIntTest {
 		"""
 			CREATE TABLE my_record (
 			    id INT(20) AUTO_INCREMENT,
-				whatever VARCHAR(100) NOT NULL						
+				whatever VARCHAR(100) NOT NULL
 			);
 			""";
 

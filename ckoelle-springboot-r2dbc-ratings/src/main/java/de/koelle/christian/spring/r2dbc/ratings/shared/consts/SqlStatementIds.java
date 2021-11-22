@@ -35,7 +35,7 @@ public final class SqlStatementIds {
                 CONSTRAINT fk_metric_2_publication_id
                     FOREIGN KEY (fk_publication_id)
                         REFERENCES rating_publication (id),
-                UNIQUE KEY uk_metric_fkpublicationid_metricnumber (fk_publication_id, metric_number)			
+                UNIQUE KEY uk_metric_fkpublicationid_metricnumber (fk_publication_id, metric_number)
             )
                 ENGINE = InnoDB
                 CHARACTER SET utf8mb4
@@ -54,11 +54,11 @@ public final class SqlStatementIds {
                 INDEX idx_result_resultreference (result_reference),
                 CONSTRAINT fk_rating_2_publication_id
                     FOREIGN KEY (fk_publication_id)
-                        REFERENCES rating_publication (id),	
+                        REFERENCES rating_publication (id),
                 CONSTRAINT fk_rating_2_metric_id
                     FOREIGN KEY (fk_metric_id)
                         REFERENCES rating_metric (id),
-                UNIQUE KEY uk_result_fkpublicationid_fkmetricid_resultreference (fk_publication_id, fk_metric_id, result_reference)	
+                UNIQUE KEY uk_result_fkpublicationid_fkmetricid_resultreference (fk_publication_id, fk_metric_id, result_reference)
                                             
             )
                 ENGINE = InnoDB

@@ -32,7 +32,7 @@ class RepositoryDbTest {
 	@Autowired
 	DatabaseClient database;
 
-	private Predicate<Object> LOGGING_TRUE_PREDICATE = i -> {
+	private final Predicate<Object> loggingTruePredicate = i -> {
 		System.out.println(i.toString());
 		return true;
 	};
@@ -99,8 +99,8 @@ class RepositoryDbTest {
 
 		ratingResultRepository.findBy(ratingPublication.domain(), ratingPublication.year(), ratingPublication.businessVersion())
 			.as(StepVerifier::create)
-			.expectNextMatches(LOGGING_TRUE_PREDICATE)
-			.expectNextMatches(LOGGING_TRUE_PREDICATE)
+			.expectNextMatches(loggingTruePredicate)
+			.expectNextMatches(loggingTruePredicate)
 			.verifyComplete();
 	}
 

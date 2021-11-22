@@ -21,9 +21,6 @@ import reactor.test.StepVerifier;
 
 /**
  * Integration tests for {@link de.koelle.christian.spring.r2dbc.ratings.business.BusinessService}.
- *
- * @author Oliver Drotbohm
- * @soundtrack Shame - Tedeschi Trucks Band (Signs)
  */
 @SpringBootTest(classes = IntTestConfiguration.class)
 class BusinessServiceCrudDbTest {
@@ -61,7 +58,7 @@ class BusinessServiceCrudDbTest {
 	}
 
 	@Test
-	void insertsDataTransactionally() {
+	void insertDataTransactionally() {
 
 		final RatingPublication publication = new RatingPublication(null, PublicationDomain.MEDIA, 2020, "v01", LocalDateTime
 			.of(2020, Month.JUNE, 13, 14, 15));
@@ -125,15 +122,10 @@ class BusinessServiceCrudDbTest {
 			.verify();
 	}
 
-	private class StepExceptionPredicate implements Predicate<Throwable> {
-
-		final Class<? extends Throwable> clazz;
-		final Set<String> expectedMsgFragments;
-
-		private StepExceptionPredicate(final Class<? extends Throwable> clazz, final Set<String> expectedMsgFragments) {
-			this.clazz = clazz;
-			this.expectedMsgFragments = expectedMsgFragments;
-		}
+	private record StepExceptionPredicate(
+		Class<? extends Throwable> clazz,
+		Set<String> expectedMsgFragments
+	) implements Predicate<Throwable> {
 
 		@Override
 		public boolean test(final Throwable throwable) {

@@ -18,9 +18,6 @@ import reactor.test.StepVerifier;
 
 /**
  * Integration tests for {@link de.koelle.christian.spring.r2dbc.ratings.business.BusinessService}.
- *
- * @author Oliver Drotbohm
- * @soundtrack Shame - Tedeschi Trucks Band (Signs)
  */
 @SpringBootTest(classes = IntTestConfiguration.class)
 class BusinessServiceGeneralDbTest {
@@ -57,7 +54,7 @@ class BusinessServiceGeneralDbTest {
 	}
 
 	@Test
-	void insertsDataTransactionally() {
+	void insertDataTransactionally() {
 
 		service.createPublication(new RatingPublication(null, PublicationDomain.MEDIA, 2020, "v01", LocalDateTime.of(2020, Month.JUNE, 13, 14, 15)))
 			.as(StepVerifier::create)

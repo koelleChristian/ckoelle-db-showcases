@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 public interface RatingPublicationRepository extends ReactiveCrudRepository<RatingPublication, Integer> {
 
 	@Query("""
-		select id, domain, year, business_version, publication_time 
-		from rating_publication c 
+		select id, domain, year, business_version, publication_time
+		from rating_publication c
 		where c.domain = :domain
 		and c.year = :year
 		and c.business_version = :businessVersion
@@ -18,8 +18,8 @@ public interface RatingPublicationRepository extends ReactiveCrudRepository<Rati
 	Mono<RatingPublication> findByMono(final PublicationDomain domain, final Integer year, final String businessVersion);
 
 	@Query("""
-		select id, domain, year, business_version, publication_time 
-		from rating_publication c 
+		select id, domain, year, business_version, publication_time
+		from rating_publication c
 		where c.year = :year
 		""")
 	Flux<RatingPublication> findBy( final Integer year);

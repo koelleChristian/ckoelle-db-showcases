@@ -1,3 +1,3 @@
-spring.r2dbc.url=r2dbc:mysql://<host>:<port>/<schemaname>?serverTimezone=Europe/Berlin
+spring.r2dbc.url=r2dbc:mysql://<host>:<port>/<schema-name>?serverTimezone=Europe/Berlin
 spring.r2dbc.username=<Your DB username>
 spring.r2dbc.password=<Your DB password>

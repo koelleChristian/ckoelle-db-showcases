@@ -87,7 +87,7 @@ public class BusinessService {
 	}
 
 	/**
-	 * This signature is only used to supply conditional exceptionbehaviour for testing.
+	 * This signature is only used to supply conditional exception behaviour for testing.
 	 */
 	@Transactional
 	public Mono<RatingPublication> createPublication(RatingPublication ratingPublication, Predicate<RatingPublication> shouldTriggerExceptionPostSavingPredicate) {
@@ -95,7 +95,8 @@ public class BusinessService {
 			.findByMono(ratingPublication.domain(), ratingPublication.year(), ratingPublication.businessVersion())
 			.handle((BiConsumer<RatingPublication, SynchronousSink<RatingPublication>>) (i, s) -> {
 				if (i != null) {
-					s.error(new IllegalArgumentException("Publication with same business identity already exists: " + i + "."));
+					final String msg = "Publication with same business identity already exists: " + i + ".";
+					s.error(new IllegalArgumentException(msg));
 				}
 			})
 			.switchIfEmpty(
@@ -109,7 +110,7 @@ public class BusinessService {
 					}));
 	}
 
-	@Transactional // TODO Not yet propagated to the outside
+	@Transactional
 	public Mono<RatingPublication> updatePublication(final Integer publicationId, final String businessVersion) {
 		return publicationRepo
 			.findById(publicationId)
@@ -123,15 +124,12 @@ public class BusinessService {
 	@Transactional
 	public Mono<PublicationWithMetricResultsRO> createOrReplaceFullPublication(final Map<CreatePublicationRO, Map<CreateMetricRO, List<CreateResultRO>>> param) {
 		if (param.size() != 1) {
-			throw new IllegalArgumentException("More than one publication"); // TODO think about exception handling
+			throw new IllegalArgumentException("More than one publication");
 		}
-
 		final Map.Entry<CreatePublicationRO, Map<CreateMetricRO, List<CreateResultRO>>> oneAnOnly = param.entrySet().iterator().next();
 		final CreatePublicationRO incomingPublication = oneAnOnly.getKey();
 		final Map<CreateMetricRO, List<CreateResultRO>> incomingPublicationEntries = oneAnOnly.getValue();
-		// TODO Preconditions
 
-		//TODO: Joinen mit dem darauffolgenden Flux.
 		deleteAllRatings(incomingPublication.domain(), incomingPublication.year(), incomingPublication.businessVersion())
 			.subscribe(
 				i -> LOG.info("Old records deleted: Amount:  Publications={} Metrics={} Results={}", i.getT1(), i.getT2(), i.getT3()),
@@ -158,7 +156,7 @@ public class BusinessService {
 					final RatingMetric savedMetric = i.getT2();
 					final List<RatingResult> mappedResultsPriorSave = i.getT3().stream()
 						.map(j -> outsideWorldMapper.map2Inner(j, savedPublication.id(), savedMetric.id()))
-						.collect(Collectors.toList());
+						.toList();
 					return resultRepo.saveAll(mappedResultsPriorSave)
 						.map(j -> Tuples.of(savedPublication, savedMetric, j));
 				})
@@ -211,7 +209,7 @@ public class BusinessService {
 		PublicationRO publication = input.keySet().iterator().next();
 		List<MetricWithResultsRO> metricWithResults = input.values().iterator().next().entrySet().stream()
 			.map(i -> new MetricWithResultsRO(i.getKey(), i.getValue()))
-			.collect(Collectors.toList());
+			.toList();
 		return new PublicationWithMetricResultsRO(publication, metricWithResults);
 	}
 

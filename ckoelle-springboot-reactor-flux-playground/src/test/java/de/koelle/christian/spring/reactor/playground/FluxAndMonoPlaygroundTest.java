@@ -39,7 +39,7 @@ class FluxAndMonoPlaygroundTest {
 	@Test
 	void zipWith() {
 		Mono.just("foo1")
-			.zipWith(Mono.just(Integer.valueOf(10)))
+			.zipWith(Mono.just(10))
 			.map(i -> i.mapT2(j -> i.getT1() + j))
 			.subscribe(System.out::println);
 
@@ -91,11 +91,6 @@ class FluxAndMonoPlaygroundTest {
 		Flux<String> flux2 = Flux.just("a", "b", "c", "d");
 		flux1.flatMap(m -> flux2.map(x -> Tuples.of(m, x, m + "___" + x)));
 	}
-
-
-
-
-
 
 	List<TestRecord> createTestRecords(int amount, String idParent) {
 		return IntStream.range(1, amount)
