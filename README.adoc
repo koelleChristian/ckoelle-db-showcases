@@ -1,0 +1,4 @@
+= ckoelle-db-showcases
+
+Here are some database related showcases
+More documentation can be found within the sub directories.
